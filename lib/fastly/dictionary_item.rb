@@ -13,6 +13,7 @@ class Fastly
     end
 
     def self.get_path(service, dictionary_id, item_key, _opts = {})
+      p service, dictionary_id, item_key, _opts
       "/service/#{service}/dictionary/#{dictionary_id}/item/#{item_key}"
     end
 
