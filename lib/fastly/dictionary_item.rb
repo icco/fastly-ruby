@@ -21,6 +21,7 @@ class Fastly
     end
 
     def self.put_path(obj)
+      p obj
       get_path(obj.service_id, obj.dictionary_id, obj.item_key)
     end
 
