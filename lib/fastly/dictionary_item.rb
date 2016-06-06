@@ -20,7 +20,7 @@ class Fastly
       "/service/#{opts[:service_id]}/dictionary/#{opts[:dictionary_id]}/item"
     end
 
-    def self.put_path(opts)
+    def self.put_path(obj)
       get_path(obj.service_id, obj.dictionary_id, obj.item_key)
     end
 
