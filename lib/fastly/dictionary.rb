@@ -11,8 +11,8 @@ class Fastly
     end
 
     def update_item(key, value)
-      di = fetcher.get_dictionary_item(service_id: service_id, dictionary_id: id, item_key: key)
-      di.value = value
+      di = fetcher.get_dictionary_item(service_id, id, key)
+      di.item_value = value
       fetcher.update_dictionary_item(di)
     end
 
