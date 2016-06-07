@@ -1,3 +1,5 @@
+require 'uri'
+
 class Fastly
   class DictionaryItem < Base
     attr_accessor :dictionary_id, :item_key, :item_value, :service_id
