@@ -26,9 +26,7 @@ class Fastly
                   {}
                 end
 
-      @http = Net::HTTP.new(uri.host, uri.port)
-      @http.set_debug_output($stdout)
-      @http.start
+      @http = Net::HTTP.start(uri.host, uri.port, options)
 
       return self unless fully_authed?
 
@@ -65,6 +63,7 @@ class Fastly
     def get(path, params = {})
       extras = params.delete(:headers) || {}
       path += "?#{make_params(params)}" unless params.empty?
+      p path, extras
       resp  = http.get(path, headers(extras))
       fail Error, resp.body unless resp.kind_of?(Net::HTTPSuccess)
       JSON.parse(resp.body)
