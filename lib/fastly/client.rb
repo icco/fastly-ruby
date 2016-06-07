@@ -110,6 +110,7 @@ class Fastly
     def post_and_put(method, path, params = {})
       extras = params.delete(:headers) || {}
       query = make_params(params)
+      p method, path, query, extras
       resp  = http.send(method, path, query, headers(extras).merge('Content-Type' =>  'application/x-www-form-urlencoded'))
       fail Error, resp.body unless resp.kind_of?(Net::HTTPSuccess)
       JSON.parse(resp.body)
