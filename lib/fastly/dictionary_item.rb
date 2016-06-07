@@ -16,8 +16,7 @@ class Fastly
     end
 
     def self.get_path(service, dictionary_id, item_key, _opts = {})
-      p service, dictionary_id, item_key, _opts
-      "/service/#{service}/dictionary/#{dictionary_id}/item/#{item_key}"
+      "/service/#{service}/dictionary/#{dictionary_id}/item/#{URI.escape(item_key)}"
     end
 
     def self.post_path(opts)
@@ -25,7 +24,6 @@ class Fastly
     end
 
     def self.put_path(obj)
-      p obj
       get_path(obj.service_id, obj.dictionary_id, obj.item_key)
     end
 
