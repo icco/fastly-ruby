@@ -1,4 +1,4 @@
-require 'uri'
+require 'cgi'
 
 class Fastly
   class DictionaryItem < Base
@@ -18,7 +18,7 @@ class Fastly
     end
 
     def self.get_path(service, dictionary_id, item_key, _opts = {})
-      "/service/#{service}/dictionary/#{dictionary_id}/item/#{URI.escape(item_key)}"
+      "/service/#{service}/dictionary/#{dictionary_id}/item/#{CGI::escape(item_key)}"
     end
 
     def self.post_path(opts)
