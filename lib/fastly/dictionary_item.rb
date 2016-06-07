@@ -2,6 +2,9 @@ class Fastly
   class DictionaryItem < Base
     attr_accessor :dictionary_id, :item_key, :item_value, :service_id
 
+    alias_method :key, :item_key
+    alias_method :value, :item_value
+
     # Return the Service object this belongs to
     def service
       @service ||= fetcher.get(Service, service_id)
