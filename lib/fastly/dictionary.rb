@@ -11,9 +11,16 @@ class Fastly
     end
 
     def update_item(key, value)
-      di = fetcher.get_dictionary_item(service_id, id, key)
-      di.item_value = value
-      fetcher.update_dictionary_item(di)
+      begin
+        di = fetcher.get_dictionary_item(service_id, id, key)
+        di.item_value = value
+        fetcher.update_dictionary_item(di)
+
+      # Fastly eats the HTTP errors, really we only want to do this with 404s,
+      # but we do it for all errors because that's the data we have.
+      rescue Fastly::Error
+        add_item(key, value)
+      end
     end
 
     def delete_item(key)
