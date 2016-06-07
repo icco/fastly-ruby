@@ -26,8 +26,9 @@ class Fastly
                   {}
                 end
 
-      @http = Net::HTTP.start(uri.host, uri.port, options)
+      @http = Net::HTTP.new(uri.host, uri.port, options)
       @http.set_debug_output($stdout)
+      @http.start
 
       return self unless fully_authed?
 
